@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panorama Sport | Спортивный инвентарь и экипировка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --red: #e63946;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Навигация */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: var(--dark-bg);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .nav-phone {
+            color: var(--text-main);
+            font-size: 18px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-phone:hover {
+            color: var(--red);
+        }
+
+        /* Главный экран */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%), url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            max-width: 700px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 500px;
+            color: #dddddd;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--red);
+            color: var(--text-main);
+            padding: 18px 36px;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.2s;
+            width: fit-content;
+        }
+
+        .btn:hover {
+            background-color: #c1272d;
+            transform: translateY(-2px);
+        }
+
+        /* Сетка категорий */
+        .cards-section {
+            padding: 80px 5%;
+            background-color: var(--dark-bg);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            position: relative;
+            height: 350px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            text-decoration: none;
+            color: var(--text-main);
+            background-color: var(--card-bg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, opacity 0.3s;
+            opacity: 0.6;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+            pointer-events: none;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card h2 {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .card-link {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+
+        /* Блок Сервиса */
+        .service-block {
+            background-color: #ffffff;
+            color: #121212;
+            padding: 60px 5%;
+            margin: 0 5% 80px 5%;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .service-block h2 {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .service-block p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+            color: #555;
+        }
+
+        .service-phone {
+            display: inline-block;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--red);
+            text-decoration: none;
+            margin: 15px 0;
+            transition: transform 0.2s;
+        }
+        
+        .service-phone:hover {
+            transform: scale(1.05);
+        }
+
+        /* Подвал */
+        footer {
+            background-color: #0a0a0a;
+            padding: 60px 5% 30px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--red);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Адаптивность сетки */
+        @media (max-width: 992px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 42px; }
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .card { height: 280px; }
+            .service-block { padding: 40px 20px; }
+            .service-phone { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo"><span>Панорама</span> Спорт</a>
+        <a href="tel:+74991375757" class="nav-phone">📞 (499) 137-57-57</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Твой спорт.<br>Твои правила.</h1>
+        <p>Экипировка для экстремальных условий, тренажеры для новых побед и профессиональный сервис.</p>
+        <a href="https://www.avito.ru/brands/pansport/all" target="_blank" class="btn">КАТАЛОГ НА АВИТО ↗</a>
+    </header>
+
+    <section class="cards-section">
+        <h2 class="section-title">Каталог товаров</h2>
+        <div class="cards-grid">
+            
+            <a href="https://www.avito.ru/brands/pansport/items/all/sport_i_otdyh/zimniy_sport/lyzhi_i_snoubordy-ASgBAgICAkTKAtoKgoIVis2QAw?s=profile_search_filters&sellerId=10aa85fa7fb32cca00390d236f37c164&q=%D0%BB%D1%8B%D0%B6%D0%B8" target="_blank" class="card">
+                <img src="https://images.unsplash.com/photo-1565992441121-4367c2967103?q=80&w=1950&auto=format&fit=crop" alt="Горные и беговые лыжи">
+                <div class="card-content">
+                    <h2>Лыжи</h2>
+                    <p>Горные и беговые модели</p>
+                    <span class="card-link">Смотреть →</span>
+                </div>
+            </a>
+
+            <a href="https://www.avito.ru/brands/pansport/items/all/sport_i_otdyh/zimniy_sport/lyzhi_i_snoubordy/snoubordy-ASgBAgICA0TKAtoKgoIVis2QA76XFbzWkQM?s=profile_search_filters&sellerId=10aa85fa7fb32cca00390d236f37c164&q=%D1%81%D0%BD%D0%BE%D1%83%D0%B1%D0%BE%D1%80%D0%B4" target="_blank" class="card">
+                <img src="https://images.unsplash.com/photo-1522061901873-585d8985c5bd?q=80&w=2070&auto=format&fit=crop" alt="Сноуборды">
+                <div class="card-content">
+                    <h2>Сноуборды</h2>
+                    <p>Доски и крепления</p>
+                    <span class="card-link">Смотреть →</span>
+                </div>
+            </a>
+
+            <a href="https://www.avito.ru/brands/pansport/items/all/velosipedy?s=profile_search_filters&sellerId=10aa85fa7fb32cca00390d236f37c164" target="_blank" class="card">
+                <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=2070&auto=format&fit=crop" alt="Велосипеды">
+                <div class="card-content">
+                    <h2>Велосипеды</h2>
+                    <p>Горные, городские, детские</p>
+                    <span class="card-link">Смотреть →</span>
+                </div>
+            </a>
+
+            <a href="https://www.avito.ru/brands/pansport/items/all/sport_i_otdyh/zimniy_sport/lyzhi_i_snoubordy/odezhda-ASgBAgICA0TKAtoKgoIVis2QA76XFcDWkQM?s=profile_search_filters&sellerId=10aa85fa7fb32cca00390d236f37c164" target="_blank" class="card">
+                <img src="https://images.unsplash.com/photo-1543322748-33df6d3db806?q=80&w=2071&auto=format&fit=crop" alt="Одежда">
+                <div class="card-content">
+                    <h2>Одежда</h2>
+                    <p>Горнолыжные куртки, термобелье</p>
+                    <span class="card-link">Смотреть →</span>
+                </div>
+            </a>
+
+            <a href="https://www.avito.ru/brands/pansport/items/all/sport_i_otdyh/zimniy_sport/lyzhi_i_snoubordy/botinki_i_krepleniya-ASgBAgICA0TKAtoKgoIVis2QA76XFb7WkQM?s=profile_search_filters&sellerId=10aa85fa7fb32cca00390d236f37c164" target="_blank" class="card">
+                <img src="https://images.unsplash.com/photo-1605548230624-8d2d0419c511?q=80&w=2070&auto=format&fit=crop" alt="Ботинки">
+                <div class="card-content">
+                    <h2>Ботинки</h2>
+                    <p>Горнолыжные и беговые</p>
+                    <span class="card-link">Смотреть →</span>
+                </div>
+            </a>
+
+            <a href="https://www.avito.ru/brands/pansport/items/all/sport_i_otdyh/edinoborstva-ASgBAgICAUTKAoRP?s=profile_search_filters&sellerId=10aa85fa7fb32cca00390d236f37c164" target="_blank" class="card">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" alt="Тренажеры">
+                <div class="card-content">
+                    <h2>Силовые & MMA</h2>
+                    <p>Турники, кимоно, перчатки</p>
+                    <span class="card-link">Смотреть →</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <section class="service-block">
+        <h2>Ski & Board & Велосервис</h2>
+        <p>Профессиональный ремонт и техническое обслуживание инвентаря любой сложности. Консервация, подготовка к сезону и зимнее хранение велосипедов.</p>
+        <a href="tel:+79164852330" class="service-phone">8 (916) 485-23-30</a>
+        <p style="font-size: 14px; color: #888;">*Алексей — звонки только по вопросам ремонта и сервиса</p>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Как нас найти</h3>
+                <p>Москва, Ленинский проспект 32</p>
+                <p style="font-size: 13px; color: #777;">(5 мин. от метро Ленинский проспект)</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <p>Магазин: <a href="tel:+74991375757" class="footer-link">(499) 137-57-57</a></p>
+                <p>Email: <a href="mailto:pansport-pansport@yandex.ru" class="footer-link">pansport-pansport@yandex.ru</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Режим работы</h3>
+                <p>Вт - Сб: 11:15 - 20:00</p>
+                <p style="color: var(--red);">Вс - Пн: Выходной</p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2009 - 2026 Панорама Спорт. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
